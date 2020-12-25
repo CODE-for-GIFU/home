@@ -100,22 +100,25 @@ section h2 span {
 /* SEC02 events
 ------------------------------------------------------------*/
 
-#events li{
-	float: left;
+.events li{
+	/*float: left;*/
 	width: calc(100%/3);
 	line-height: 0;
 }
-#events li.full{
+.events li.full{
 	width: 100%;
 }
 
-
-#events img{
+.events img{
 	display: block;
 	width: 100%;
 	height: auto;
 }
 
+.events {
+	display:flex;
+	margin: 0px;
+}
 
 /* SEC03 BRAND
 ------------------------------------------------------------*/
