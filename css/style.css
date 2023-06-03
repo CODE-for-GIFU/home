@@ -178,7 +178,14 @@ section h2 span {
 	border: 0;
 }
 
+#mainImg{
+	padding: 80px 30px 0;
+	text-align: center;
+}
 
+#mainImg img{
+	width: 40%;
+}
 
 /* RESPONSIVE 設定
 ------------------------------------------------------------*/
