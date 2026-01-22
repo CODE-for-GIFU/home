@@ -1,195 +1,386 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CODE for GIFU - Cold Sleep</title>
-    
-    <!-- OGP (Open Graph Protocol) -->
-    <meta property="og:title" content="CODE for GIFU - Cold Sleep">
-    <meta property="og:description" content="私たちは今、アップデートのための長い眠りにつきます。未来のCODE for GIFUへメッセージを送ってください。">
-    <meta property="og:image" content="https://codeforgifu.jp/background.png">
-    <meta property="og:url" content="https://codeforgifu.jp/">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="CODE for GIFU">
-    <meta property="og:locale" content="ja_JP">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CODE for GIFU - Cold Sleep">
-    <meta name="twitter:description" content="私たちは今、アップデートのための長い眠りにつきます。未来のCODE for GIFUへメッセージを送ってください。">
-    <meta name="twitter:image" content="https://codeforgifu.jp/background.png">
-    
-    <!-- 基本メタタグ -->
-    <meta name="description" content="私たちは今、アップデートのための長い眠りにつきます。未来のCODE for GIFUへメッセージを送ってください。">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600&family=Noto+Sans+JP:wght@300;500&display=swap');
-        
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'Exo 2', 'Noto Sans JP', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .scanline {
-            width: 100%;
-            height: 100px;
-            z-index: 10;
-            background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 255, 255, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
-            opacity: 0.1;
-            position: absolute;
-            bottom: 100%;
-            animation: scanline 10s linear infinite;
-        }
-
-        @keyframes scanline {
-            0% { bottom: 100%; }
-            100% { bottom: -100px; }
-        }
-
-        .glitch-text {
-            text-shadow: 2px 0 #0ff, -2px 0 #f0f;
-        }
-
-        .fade-in {
-            animation: fadeIn 3s ease-in forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; filter: blur(10px); }
-            to { opacity: 1; filter: blur(0); }
-        }
-
-        .terminal-box {
-            background: rgba(0, 20, 20, 0.8);
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-        }
-
-        /* 背景画像の設定 */
-        #bg-image {
-            /* 保存した画像がある場合は 'background.png' に書き換えてください */
-            background-image: url('background.png');
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.4);
-        }
-
-        /* カスタムスクロールバー */
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(0, 255, 255, 0.3);
-        }
-    </style>
+	<meta charset="UTF-8">
+	<meta name="description" content="CODE for GIFU">
+	<meta name="viewport" content="width=device-width">
+	<title>CODE for GIFU</title>
+	<link rel="stylesheet" media="all" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script src="js/script.js"></script>
 </head>
-<body class="min-h-screen relative">
-    <div class="scanline"></div>
-    
-    <div class="relative min-h-screen flex flex-col items-center justify-center z-20 px-4 py-12">
-        <!-- メインコンテンツ -->
-        <div class="text-center mb-12 fade-in">
-            <h1 class="text-4xl md:text-6xl font-light tracking-[0.2em] mb-4 glitch-text">CODE for GIFU</h1>
-            <div class="h-[1px] w-32 bg-cyan-500 mx-auto mb-8"></div>
-            
-            <p class="text-xl md:text-2xl font-light tracking-widest text-cyan-300 mb-8">
-                COLD SLEEP / CHARGING PERIOD
-            </p>
-            
-            <div class="max-w-xl mx-auto text-sm md:text-base leading-loose font-extralight text-gray-300 space-y-4">
-                <p>
-                    私たちは今、アップデートのための長い眠りにつきます。<br>
-                    蓄積されたデータを整理し、次なるフェーズへ向かうための充電期間。<br>
-                    また、新しい光の下でお会いしましょう。
-                </p>
-                <p class="text-xs tracking-tighter opacity-50 uppercase">
-                    System Status: Hibernation Mode... Active
-                </p>
-            </div>
-        </div>
 
-        <!-- インタラクティブ・ターミナル (Gemini API Integration) -->
-        <div class="w-full max-w-lg terminal-box p-6 rounded-sm fade-in" style="animation-delay: 1s;">
-            <div class="flex items-center mb-4 space-x-2">
-                <div class="w-2 h-2 rounded-full bg-red-500"></div>
-                <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-                <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                <span class="text-[10px] text-cyan-500 font-mono tracking-widest ml-2 uppercase">Time Capsule Terminal</span>
-            </div>
+<body id="top">
+	<div id="wrapper">
 
-            <div id="terminal-content" class="text-xs font-mono text-cyan-100/80 mb-4 h-48 overflow-y-auto space-y-2 leading-relaxed">
-                <p>> System initialized.</p>
-                <p>> 未来のCODE for GIFUへメッセージを送ってください。</p>
-                <p>> 送信された内容は cfgifu@gmail.com へ転送されます。</p>
-            </div>
+		<div id="sidebar">
+			<div id="sidebarWrap">
+				<h1>　	</h1>
+				<!--
+					<h1><img src="images/logo.png" width="87" height="25" alt="logo"></h1>
+				-->
+				<nav id="mainnav">
+					<p id="menuWrap"><a id="menu"><span id="menuBtn"></span></a></p>
+					<div class="panel">
+						<ul>
+							<li><a href="#top">TOP</a></li>
+							<li><a href="#sec01">MESSAGE</a></li>
+							<li><a href="#sec03">PROJECT</a></li>
+							<li><a href="#sec02">EVENT</a></li>
+							<li><a href="#sec04">CONTACT</a></li>
+						</ul>
+						<ul id="sns">
+							<li><a href="https://www.facebook.com/code4gifu/" target="_blank"><img src="images/iconFb.png" width="20" height="20" alt="FB"></a></li>
+							<!--
+							<li><a href="https://www.instagram.com/cfgifu/" target="_blank"><img src="images/iconInsta.png" width="20" height="20" alt="Instagram"></a></li>
+							-->
+							<li><a href="https://github.com/CODE-for-GIFU" target="_blank">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a>
+							</li>
 
-            <div class="relative flex flex-col space-y-2 mt-4">
-                <input type="text" id="user-input" 
-                    class="w-full bg-black/50 border border-cyan-900 text-cyan-300 text-sm p-3 outline-none focus:border-cyan-500 transition-colors font-mono"
-                    placeholder="Message to the future...">
-                <div class="flex space-x-2">
-                    <button onclick="sendMessageToFuture()" id="send-btn"
-                        class="flex-1 py-3 bg-cyan-950 text-cyan-400 border border-cyan-800 hover:bg-cyan-900 transition-all text-xs font-bold uppercase tracking-tighter">
-                        ✉️ Send Message
-                    </button>
-                </div>
-            </div>
-            
-        </div>
-    </div>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
 
-    <!-- 背景装飾 -->
-    <div class="fixed inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-80 z-10 pointer-events-none"></div>
-    <div id="bg-image" class="fixed inset-0 z-0 transition-opacity duration-2000"></div>
+		<div id="content">
+			<p id="mainImg"><img src="images/cfglogo.svg" alt=""></p>
+			<!-- MESSAGE -->
+			<section id="sec01">
+				<header>
+					<h2><span>MESSAGE</span></h2>
+				</header>
+				<div class="innerS">
+					CODE for GIFUでは「テクノロジーを使って身の回りの困りごとを自分達の手で解決する」ことを目指します。
+					<br><br>
+					「テクノロジーなんてよくわからない」「自分でも出来るかな？」という方にも参加して欲しい。何故なら自分だけで出来ない事を、出来るようにする必要なんてありません。あなたが出来る事を少しずつ分け合う事で、みんなの出来る事を増やすのがシビックテック活動の本質です。だから、私たちはあなたの力が必要なんです。
+				</div>
+				<!--
+				<div class="innerS">
+					岐阜県が公開しているオープンデータを利用して、公認サイトとして認定されました。
+					<a href="https://covid19-gifu.netlify.app/" target="_blank"><img src="images/covid19_ogp.png" alt="岐阜県新型コロナウィルス感染症サイト"></a>
+				</div>
+				-->
+			</section>
+			<!-- // MESSAGE -->
+			<section id="sec03">
+				<header>
+					<h2><span>PROJECT</span></h2>
+				</header>
+				<div class="inner">
+					<ul class="col4">
+						<li>
+							<p class="img"><img src="images/logo_it_sodan.png" width="168" height="168" alt=""></p>
+							<p>月１回程度不定期でITに関するテーマを設けて少人数で開催しています</p>
+						</li>
+						<li>
+							<p class="img"><img src="images/logo_suisui.png" width="168" height="168" alt=""></p>
+							<p>平日の夜にWebの勉強や自分のやりたい事を「すいすい」できるようにする会です</p>
+						</li>
+						<li>
+							<p class="img"><img src="images/logo_shugeibu.png" width="168" height="168" alt=""></p>
+							<p>手芸部では編み物を中心にMaker Faireやクリエイターズパークへ出展をしています</p>
+						</li>
+						<li>
+							<p class="img"><img src="images/logo_tenmonbu.png" width="168" height="168" alt=""></p>
+							<p>天文部では不定期で星空や月の写真の撮影会を開催しています</p>
+						</li>
+						<li>
+							<p class="img"><img src="images/logo_make.png" width="168" height="168" alt=""></p>
+							<p>ものづくり部では作ってみたいものがある仲間を募集しています</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<!-- // PROJECT -->
+			<!-- EVENTS -->
+			<section id="sec02">
+				<header>
+					<h2><span>EVENT</span></h2>
+				</header>
+				<div class='tableauPlaceholder' id='viz1740876061174' style='position: relative'><noscript><a href='#'><img
+								alt='ダッシュボード 1 '
+								src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;3_&#47;3_17407944198830&#47;1_1&#47;1_rss.png'
+								style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'>
+						<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+						<param name='embed_code_version' value='3' />
+						<param name='site_root' value='' />
+						<param name='name' value='3_17407944198830&#47;1_1' />
+						<param name='tabs' value='no' />
+						<param name='toolbar' value='yes' />
+						<param name='static_image'
+							value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;3_&#47;3_17407944198830&#47;1_1&#47;1.png' />
+						<param name='animate_transition' value='yes' />
+						<param name='display_static_image' value='yes' />
+						<param name='display_spinner' value='yes' />
+						<param name='display_overlay' value='yes' />
+						<param name='display_count' value='yes' />
+						<param name='language' value='ja-JP' />
+						<param name='filter' value='publish=yes' />
+					</object></div>
+				<script
+					type='text/javascript'>                    var divElement = document.getElementById('viz1740876061174'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.minWidth = '420px'; vizElement.style.maxWidth = '650px'; vizElement.style.width = '100%'; vizElement.style.minHeight = '587px'; vizElement.style.maxHeight = '1400px'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else if (divElement.offsetWidth > 500) { vizElement.style.minWidth = '420px'; vizElement.style.maxWidth = '650px'; vizElement.style.width = '100%'; vizElement.style.minHeight = '587px'; vizElement.style.maxHeight = '887px'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '977px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+				<script>
+				</script>
+				<div class="innerS">
+					<h2>2025年</h2>
+				</div>
+				<div id="list-container-2025"></div>
+				<div class="innerS">
+					<h2>2024年</h2>
+				</div>
+				<div id="list-container-2024"></div>
+				<div class="innerS">
+					<h2>2023年</h2>
+				</div>
+				<div id="list-container-2023"></div>
+				<div class="innerS">
+					<h2>2022年</h2>
+					<img src="images/udc2022.png" alt="UDC2022">
+					伝統産業×IT アーバンデータチャレンジ 2022 in 岐阜
+					<p>2022.8.27（土） キックオフ　
+						<a href="https://www.softopia.or.jp/events/20220827udc/" target="udc">イベント内容</a>
+						｜ <a href="https://photos.app.goo.gl/aNhLcJq1zZmJzbf48" target="udc">活動写真</a>
+					</p>
+					<p>2022.10.16（日）勉強会　
+						<a href="https://www.softopia.or.jp/events/20221016udc/" target="udc">イベント内容</a>
+						｜ <a href="https://photos.app.goo.gl/YJr9ZwXcdXCXpdWn7" target="udc">活動写真</a>
+					</p>
+					<p>2022.11.25（金）26（土）中間シンポジウム　
+						<a href="https://udc2022-gifu.peatix.com/" target="udc">イベント内容</a>
+						｜ <a href="https://photos.app.goo.gl/FiNpqsFiN9ng7ngo6" target="udc">活動写真</a>
+						｜ <a href="https://urbandata-challenge.jp/2022/event22/2022-mid-term-symposium" target="udc">レポート</a>
+					</p>
+					<p>2022.12.10（土）11（日）冬キャンプハッカソン　
+						<a href="https://www.facebook.com/events/1463876304107814/" target="udc">イベント内容</a>
+						｜ <a href="https://photos.app.goo.gl/HsNvq8zK7PUbKmK87" target="udc">活動写真</a>
+					</p>
+				</div>
+				<div id="list-container-2022"></div>
+				<div class="innerS">
+					<h2>2021年</h2>
+					<img src="images/udc2021.png" alt="UDC2021">
+					伝統産業×IT アーバンデータチャレンジ 2021 in 岐阜
+					<p>2021.9.12（日） <a href="https://www.softopia.or.jp/events/20210912udc/">キックオフ</a></p>
+					<p>2021.10.30（土）<a href="https://www.softopia.or.jp/events/20211030udc-study/">勉強会</a></p>
+					<p>2021.11.21（日）27（土）<a href="https://www.facebook.com/events/241744537949741/">美濃焼フィールドワーク</a></p>
+					<p>2021.12.5（日）<a href="https://www.facebook.com/events/955024938552152/">デザイン思考ワークショップ</a></p>
+					<p>2021.12.11（土）<a href="https://www.softopia.or.jp/events/202112111udc-3/">成果報告会</a></p>
+				</div>
+				<div id="list-container-2021"></div>
+				<div class="innerS">
+					<h2>2020年</h2>
+					<img src="images/udc2020.png" alt="UDC2020">
+					アーバンデータチャレンジ 2020 in 岐阜
+					<p>2020.8.29（土）13:00 - 17:00 <a href="https://www.softopia.or.jp/events/20200829udc-1/">キックオフ</a></p>
+					<p>2020.10.31（土）13:00 - 17:00 <a href="https://www.softopia.or.jp/events/20201031udcstudy/">勉強会</a></p>
+					<p>2020.12.19（土）13:00 - 17:00 <a href="https://www.softopia.or.jp/events/202012191udc/">ソーシャルハックデー</a></p>
+				</div>
+				<div id="list-container-2020"></div>
+			</section>
+			<!-- // EVENTS -->
+			<!-- COMPANY -->
+			<section id="sec04">
+				<header>
+					<h2><span>CONTACT</span></h2>
+				</header>
+				<div class="inner">
+					<ul>
+						<li>
+							<p>メール、もしくはFacebookページからお問い合わせください</p>
+							<p>e-Mail <a href="mailto:cfgifu@gmail.com">cfgifu@gmail.com</a></p>
+							<p>Facebook <a href="https://www.facebook.com/code4gifu/">＠code4gifu</a></p>
+							<p>CODE for GIFUは<a href="https://g-mediacosmos.jp/center/act_01/0101/dantai_list.html" target="_blank">「岐阜市市民活動団体」</a>に登録しており、「3.まちづくりの推進を図る活動」を推進しています。</p>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<!-- // COMPANY -->
 
-    <script>
-        let lastUserMessage = "";
+			<footer id="footer">
+				Copyright(c) 2016 Sample Inc. All Rights Reserved. Design by <a href="http://f-tpl.com" target="_blank">http://f-tpl.com</a><!-- ←クレジット表記を外す場合はシリアルキーが必要です http://f-tpl.com/credit/ -->
+			</footer>
 
-        // 未来へのメッセージ送信機能
-        function sendMessageToFuture() {
-            const input = document.getElementById('user-input');
-            const terminal = document.getElementById('terminal-content');
-            const message = input.value.trim();
+		</div>
+	</div>
+	<script>
+		// リストを表示
+		function eventlist(div,jsonData) {
+			var cnt = 0;
+			var ul;
+			var tags = "";
+			jsonData.forEach(item => {
+				if (cnt % 3 == 0) {
+					ul = document.createElement('ul');
+					ul.className = 'events';
+					if (tags != "") {
+						ul.innerHTML = tags;
+						div.appendChild(ul);
+						tags = "";
+					}
+				}
+				tags += '<li><a href="'+item.ref+'" target="events"><img src="images/'+item.banner+'" width="360" alt="'+item.alt+'"></a></li>';
+				cnt++;
+			});
+			if (tags != "") {
+				ul = document.createElement('ul');
+				ul.className = 'events';
+				ul.innerHTML = tags;
+				div.appendChild(ul);
+				tags = "";
+			}
+		}
+		// イベントを追加
+		//2025年
+		const jsonData2025 = [
+				{ "ref": "https://www.facebook.com/events/4065558850347545/", "banner": "banner250301.jpg", "alt": "ODD" },
+				{ "ref": "https://www.facebook.com/events/1276914690300907/", "banner": "banner250130.jpg", "alt": "定期総会" },
+				{ "ref": "https://www.facebook.com/events/583209754472610/", "banner": "banner250126.png", "alt": "手芸部" }
+		];
+		eventlist(document.getElementById('list-container-2025'),jsonData2025);
 
-            if (!message) return;
+		//2024年
+		const jsonData2024 = [
+			 { "ref": "https://www.facebook.com/events/4063811983850524/", "banner": "banner241222.png", "alt": "手芸部"}
+			,{ "ref": "https://www.facebook.com/events/1453170865493508/","banner": "banner241013.png", "alt": "手芸部"}
+			,{ "ref": "https://www.facebook.com/events/1457138064939251/","banner": "banner240914.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/498650716145322/","banner": "banner240901.png", "alt": "手芸部"}
+			,{ "ref": "https://www.facebook.com/events/1881657965670750/","banner": "banner240829.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/838658714850169/","banner": "banner240728.png", "alt": "手芸部"}
+			,{ "ref": "https://www.facebook.com/events/2647604928746249/","banner": "banner240727.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/1177990116703614/","banner": "banner240623.png", "alt": "手芸部"}
+			,{ "ref": "https://www.facebook.com/events/1031566968301484/","banner": "banner240622.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/414820428071601/","banner": "banner240524.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/314567154992139/","banner": "banner240519.png", "alt": "手芸部"}
+			,{ "ref": "https://www.facebook.com/events/7584829814939359/","banner": "banner240518.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/1110732156642544/","banner": "banner240427.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/1432983510979770/","banner": "banner240421.png", "alt": "手芸部"}
+			,{ "ref": "https://www.facebook.com/events/1163357938379614/","banner": "banner240327.jpg", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/708405528130673/","banner": "banner240317.jpg", "alt": "手芸部"}
+			,{ "ref": "https://www.facebook.com/events/7587017341350036/","banner": "banner240309.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/1123424985501425/","banner": "banner240305.png", "alt": "ODD"}
+			,{ "ref": "https://www.facebook.com/events/7664187353599952/","banner": "banner240225.jpg", "alt": "手芸部"}
+			,{ "ref": "https://www.facebook.com/events/2290078821187622/","banner": "banner240210.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/1545369589615636/","banner": "banner240131.jpg", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/7041577752602987/","banner": "banner240125.png", "alt": "定期総会"}
+			,{ "ref": "https://www.facebook.com/events/1406724713304480/","banner": "banner240121.png", "alt": "手芸部"}
+			,{ "ref": "https://www.facebook.com/events/3522259441363313/","banner": "banner240120.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/393637689706947/","banner": "banner240111.jpg", "alt": "すいすい会"}
+		];
+		eventlist(document.getElementById('list-container-2024'),jsonData2024);
 
-            lastUserMessage = message;
-            // 入力フィールドはクリアしない（画面上に残す）
-            
-            const userMsg = document.createElement('p');
-            userMsg.className = "text-cyan-400";
-            userMsg.textContent = `> User: ${message}`;
-            terminal.appendChild(userMsg);
-            terminal.scrollTop = terminal.scrollHeight;
+		//2023年
+		const jsonData2023 = [
+			{ "ref": "https://www.facebook.com/events/1112419059924854/","banner": "banner231217.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/878812227300350/","banner": "banner231202.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/272361858642084/","banner": "banner231201.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/654075416843556/","banner": "banner231126.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/3571993426453325/","banner": "banner231027.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/866204225023487/","banner": "banner231022.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/1528171251262445/","banner": "banner231014.jpg", "alt": "udc2023"}
+			,{ "ref": "https://www.facebook.com/events/794907669305540/","banner": "banner230922.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/1344847159573479/","banner": "banner230916.jpg", "alt": "udc2023"}
+			,{ "ref": "https://www.facebook.com/events/301630412355342/","banner": "banner230820.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/789942342868300/","banner": "banner230818.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/1267274200846888/","banner": "banner230723_1.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/3426818327566542/","banner": "banner230723.jpg", "alt": "udc2023"}
+			,{ "ref": "https://www.facebook.com/events/274397428506855/","banner": "banner230716.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/225102600326713/","banner": "banner230701.png", "alt": "手芸部"}
+			,{ "ref": "https://www.facebook.com/events/627890135892112/","banner": "banner230618.png", "alt": "ぎふリビングラボ"}
+			,{ "ref": "https://www.facebook.com/events/1594870084324687/","banner": "banner230617_2.jpg", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/197348382759041/","banner": "banner230617_1.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/1961794570821837/","banner": "banner230611.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/6162544940471159/","banner": "banner230521.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/578724177689814/","banner": "banner230520.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/6162544940471159/","banner": "banner230422-2.jpg", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/759663045451634/","banner": "banner230422-1.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/749937286481906/","banner": "banner230326.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/783522143121601/","banner": "banner230318-2.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/918653752891791/","banner": "banner230318-1.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/504312225251615/","banner": "banner230304.png", "alt": "ODD2023"}
+			,{ "ref": "https://www.facebook.com/events/6089868634389755/","banner": "banner230226.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/886205156017340/","banner": "banner230225.jpg", "alt": "ものづくり部"}
+			,{ "ref": "https://www.facebook.com/events/1045683532815420/","banner": "banner230126.png", "alt": "定期総会"}
+			,{ "ref": "https://www.facebook.com/events/1425243248238211/","banner": "banner230122.png", "alt": "children's crochet"}
+		];
+		eventlist(document.getElementById('list-container-2023'),jsonData2023);
 
-            // 直接メール送信機能を呼び出す
-            sendMailDirectly();
-        }
+		//2022年
+		const jsonData2022 = [
+				{ "ref": "https://www.facebook.com/events/1628287860941231/","banner": "banner221222.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/1463876304107814/","banner": "banner221210.png", "alt": "冬キャンプ"}
+			,{ "ref": "https://www.facebook.com/events/693946831907287/","banner": "banner221120.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/2289976151169181/","banner": "banner221023.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/622155855895091/","banner": "banner220919.png", "alt": "岐阜ウォッチパーティ"}
+			,{ "ref": "https://www.facebook.com/events/408277788068645/","banner": "banner220911.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/394414719435308","banner": "banner220906.png", "alt": "小さなIT相談室メタバース"}
+			,{ "ref": "https://www.facebook.com/events/494493572429030/","banner": "banner220806.png", "alt": "夏合宿"}
+			,{ "ref": "https://www.facebook.com/events/542900970905915/","banner": "banner220731.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/774023113605383/","banner": "banner220727.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/1020996088855546/","banner": "banner220605.png", "alt": "children's crochet"}
+			,{ "ref": "https://www.facebook.com/events/5194355310648557/","banner": "banner220516.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/741397363908717/","banner": "banner220505.png", "alt": "children's crochet"}
+			,{ "ref": "https://hackmd.io/@ishiigifu/meetup2022","banner": "banner220416.png", "alt": "いざ岐阜"}
+			,{ "ref": "https://www.facebook.com/events/307574151201364/","banner": "banner220305.png", "alt": "オープンデータをつくってみよう"}
+			,{ "ref": "https://www.facebook.com/events/1393564477741028/","banner": "banner220304.png", "alt": "世界で一番"}
+			,{ "ref": "https://www.facebook.com/events/2850563778568578/","banner": "banner220219.png", "alt": "ヤーンボミング研究会"}
+			,{ "ref": "https://www.facebook.com/events/225160476464647/","banner": "banner220125.png", "alt": "定期総会"}
+			,{ "ref": "https://www.facebook.com/events/428166649009781/","banner": "banner220116.png", "alt": "ねこでもできる編み物会"}
+		];
+		eventlist(document.getElementById('list-container-2022'),jsonData2022);
 
-        // メール送信機能
-        function sendMailDirectly() {
-            const recipient = "cfgifu@gmail.com";
-            const subject = encodeURIComponent("CODE for GIFU: Message from Time Capsule");
-            const bodyText = `--- Future Message Log ---\n\nUser Message:\n${lastUserMessage}\n\n--- End of Log ---`;
-            const body = encodeURIComponent(bodyText);
-            
-            window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-            
-            const terminal = document.getElementById('terminal-content');
-            const confirmMsg = document.createElement('p');
-            confirmMsg.className = "text-green-400 text-[10px]";
-            confirmMsg.textContent = "> External mail client triggered. Log transmitted.";
-            terminal.appendChild(confirmMsg);
-            terminal.scrollTop = terminal.scrollHeight;
-        }
+		//2021年
+		const jsonData2021 = [
+			{ "ref": "https://www.facebook.com/events/1239709109786723/","banner": "banner211020.png", "alt": "ポッドキャストナイト"}
+			,{ "ref": "https://www.facebook.com/events/580452383295911/","banner": "banner211007.png", "alt": "ウェルビーイング"}
+			,{ "ref": "https://www.facebook.com/events/1020147708843065/","banner": "banner210925.png", "alt": "モチーフ編み会"}
+			,{ "ref": "https://www.facebook.com/events/366235981774650/","banner": "banner210906.png", "alt": "臨時総会"}
+			,{ "ref": "https://www.facebook.com/events/274596804091314/","banner": "banner210904.png", "alt": "川遊び 小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/386101263185749/","banner": "banner210829.png", "alt": "ダサいTシャツ選手権"}
+			,{ "ref": "https://www.facebook.com/events/528316151731544/","banner": "banner210823.png", "alt": "非営利団体ｘＩＴ"}
+			,{ "ref": "https://www.facebook.com/events/178417487646540/","banner": "banner210723.png", "alt": "オリンピック手芸会"}
+			,{ "ref": "https://www.facebook.com/events/4387652781244687/","banner": "banner210714.png", "alt": "小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/2861559674161815/","banner": "banner210625.png", "alt": "つくりかけのキットをつくる会"}
+			,{ "ref": "https://www.facebook.com/events/1057967031682975/","banner": "banner210619.png", "alt": "つくりかけのキットをつくる会"}
+			,{ "ref": "https://www.facebook.com/events/793892317917894/","banner": "banner210525.png", "alt": "うーたん to いっしょ 小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/450582482904699/","banner": "banner210522.png", "alt": "こもの編み"}
+			,{ "ref": "https://www.facebook.com/events/442492900369096/","banner": "banner210424.png", "alt": "はぎとじの会"}
+			,{ "ref": "https://www.facebook.com/events/2771166136530031/","banner": "banner210423.png", "alt": "スマートシティって何ですか 小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/3591780984224001/","banner": "banner210327.png", "alt": "Web Visual Programming 小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/256721259277824/","banner": "banner210320.png", "alt": "ニットピクニック"}
+			,{ "ref": "https://www.facebook.com/events/1743615625810378/","banner": "banner210306.png", "alt": "オープンデータミックス会議"}
+			,{ "ref": "https://www.facebook.com/events/3666743963440837/","banner": "banner210302.png", "alt": "ロジねこ勉強会"}
+			,{ "ref": "https://www.facebook.com/events/348052816150800/","banner": "banner210219.gif", "alt": "オンライン飲み会の楽しみ方 小さなIT相談室"}
+			,{ "ref": "https://www.facebook.com/events/3624756584258679/","banner": "banner210126.png", "alt": "定期総会"}
+			,{ "ref": "https://www.facebook.com/events/1359557081058341/","banner": "banner210120.png", "alt": "編み初めナイト"}
+			,{ "ref": "https://www.facebook.com/events/417351009458931/","banner": "banner210119.png", "alt": "小さなIT相談室うたをつくろう"}
+		];
+		eventlist(document.getElementById('list-container-2021'),jsonData2021);
 
-        document.getElementById('user-input').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') sendMessageToFuture();
-        });
-    </script>
+		//2020年
+		const jsonData2020 = [
+			{ "ref": "https://www.facebook.com/events/688253188526703/","banner": "banner201227.png", "alt": "編み納め会"}
+			,{ "ref": "https://www.facebook.com/events/389435648877767/","banner": "banner201123.png", "alt": "ニットピクニック"}
+			,{ "ref": "https://www.facebook.com/events/640245723216886/","banner": "banner201024.png", "alt": "モヘアの季節"}
+			,{ "ref": "https://www.facebook.com/events/1102451183504159/","banner": "banner200927.png", "alt": "栗菓子とセーターオンライン"}
+			,{ "ref": "https://www.facebook.com/events/2576756829244453/","banner": "banner200705.png", "alt": "柿渋に染めてみようオンライン"}
+			,{ "ref": "https://www.facebook.com/events/1498261807002001/","banner": "banner200606.png", "alt": ""}
+			,{ "ref": "https://www.facebook.com/events/229521691721541/","banner": "banner200504.jpg", "alt": ""}
+			,{ "ref": "https://www.facebook.com/events/656667258237839/","banner": "banner200419.jpg", "alt": ""}
+			,{ "ref": "https://www.facebook.com/events/2704102456363543/","banner": "banner200308.png", "alt": ""}
+			,{ "ref": "https://www.facebook.com/events/786001965245122/","banner": "banner200307.png", "alt": ""}
+			,{ "ref": "https://www.facebook.com/events/183615756279089/","banner": "banner200225.png", "alt": ""}
+			,{ "ref": "https://www.facebook.com/events/652643508877356/","banner": "banner2002.jpg", "alt": ""}
+			,{ "ref": "https://www.facebook.com/events/830110894095900/","banner": "banner200129.png", "alt": ""}
+			,{ "ref": "https://www.facebook.com/events/466332784293145/","banner": "banner200113.png", "alt": ""}
+			,{ "ref": "https://www.facebook.com/events/557715298139628/","banner": "banner200112.png", "alt": ""}
+			,{ "ref": "https://www.facebook.com/events/865088163986149/","banner": "banner200112-2.jpg", "alt": ""}
+			,{ "ref": "https://www.facebook.com/events/479261586047944/","banner": "banner200105.png", "alt": ""}
+		];
+		eventlist(document.getElementById('list-container-2020'),jsonData2020);
+
+		</script>
+
 </body>
 </html>
