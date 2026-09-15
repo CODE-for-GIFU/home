@@ -95,6 +95,10 @@ section h2 span {
 	margin: 0 auto;
 	padding-bottom: 80px;
 }
+.innerS img{
+	display: block;
+	margin-bottom: 10px;
+}
 
 
 /* SEC02 events
