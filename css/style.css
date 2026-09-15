@@ -100,6 +100,14 @@ section h2 span {
 /* SEC02 events
 ------------------------------------------------------------*/
 
+#sec02 .innerS{
+	margin-top: 80px;
+	padding-bottom: 10px;
+}
+#sec02 .innerS h2{
+	margin: 0 auto 20px;
+}
+
 .events li{
 	/*float: left;*/
 	width: calc(100%/3);
