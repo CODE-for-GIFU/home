@@ -86,7 +86,7 @@ section h2 span {
 	padding-bottom: 50px;
 }
 
-#sec03 .inner{
+#project .inner{
 	border-bottom: 1px solid #a0a0a0;
 }
 
@@ -101,14 +101,14 @@ section h2 span {
 }
 
 
-/* SEC02 events
+/* EVENT
 ------------------------------------------------------------*/
 
-#sec02 .innerS{
+#event .innerS{
 	margin-top: 80px;
 	padding-bottom: 10px;
 }
-#sec02 .innerS h2{
+#event .innerS h2{
 	margin: 0 auto 20px;
 }
 
@@ -132,15 +132,15 @@ section h2 span {
 	margin: 0px;
 }
 
-/* SEC03 BRAND
+/* PROJECT
 ------------------------------------------------------------*/
-#sec03{
+#project{
 	padding-top: 50px;
 }
 
-/* SEC04 PROJECT
+/* CONTACT
 ------------------------------------------------------------*/
-#sec04{
+#contact{
 	padding-bottom: 0 !important;
 }
 
@@ -253,7 +253,7 @@ section h2 span {
 		opacity: .8;
 	}
 	
-	/* SEC03 BRAND
+	/* PROJECT
 	-----------------*/
 	.col4{
 		text-align: center;
