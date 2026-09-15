@@ -124,6 +124,10 @@
 				<script>
 				</script>
 				<div class="innerS">
+					<h2>2026年</h2>
+				</div>
+				<div id="list-container-2026"></div>
+				<div class="innerS">
 					<h2>2025年</h2>
 				</div>
 				<div id="list-container-2025"></div>
@@ -232,6 +236,13 @@
 			}
 		}
 		// イベントを追加
+		//2026年
+		const jsonData2026 = [
+			{ "ref": "https://fb.me/e/4ijNAG27w", "banner": "banner20260215.jpg", "alt": "編みピクニック" },
+			{ "ref": "https://fb.me/e/5mupXUXSs", "banner": "banner20260122.jpg", "alt": "CODE for GIFU 2026年度総会" }
+		];
+		eventlist(document.getElementById('list-container-2026'), jsonData2026);
+
 		//2025年
 		const jsonData2025 = [
 				{ "ref": "https://www.facebook.com/events/4065558850347545/", "banner": "banner250301.jpg", "alt": "ODD" },
